@@ -8,7 +8,6 @@ namespace Wizardry.Data
     {
         public ContextDb(DbContextOptions options) : base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
             Batteries_V2.Init();
         }
