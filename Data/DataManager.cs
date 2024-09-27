@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,7 @@ namespace Wizardry.Data
         {
             if(id != null)
             {
-                return _db.People.Find(id);
+                return _db.People.Include(a => a.Cars).FirstOrDefault(a => a.Id == id);
             }
             return null;
         }
