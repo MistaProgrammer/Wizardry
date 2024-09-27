@@ -4,12 +4,12 @@ namespace Wizardry.Pages;
 
 public partial class NewPerson : ContentPage
 {
-	private readonly ContextDb db;
+	private readonly IPeopleManager _manager;
 
-	public NewPerson(ContextDb db)
+	public NewPerson(IPeopleManager manager)
 	{
 		InitializeComponent();
-		this.db = db;
+		this._manager = manager;
 	}
 
     private async void Save_Clicked(object sender, EventArgs e)
@@ -17,8 +17,7 @@ public partial class NewPerson : ContentPage
 		string personsName = ForName.Text;
 		if(personsName.Length > 3)
 		{
-			db.People.Add(new Models.Person { Name = personsName });
-			db.SaveChanges();
+			_manager.Save(new Models.Person { Name = personsName });
 			//await Shell.Current.GoToAsync("MainPage");
 			//db.Entry(db.People.First()).Reload();
 

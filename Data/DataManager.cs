@@ -8,52 +8,54 @@ using Wizardry.Models;
 
 namespace Wizardry.Data
 {
-    public class DataManager : IDataManager
+    public class DataManager<TEntity> : CarsManager<TEntity> where TEntity : class
     {
-        private readonly ContextDb _db;
+        protected readonly ContextDb _db;
+        protected readonly DbSet<TEntity> _dbSet;
 
         public DataManager(ContextDb db)
         {
             _db = db;
+            _dbSet = db.Set<TEntity>();
         }
 
-        public void Delete(Person person)
+        public void Delete(TEntity entity)
         {
-            if (person != null)
+            if (entity != null)
             {
-                _db.Remove(person);
+                _dbSet.Remove(entity);
                 _db.SaveChanges();
             }
         }
 
-        public void Edit(Person person)
+        public void Edit(TEntity entity)
         {
-            if (person != null)
+            if (entity != null)
             {
-                _db.Update(person);
+                _dbSet.Update(entity);
                 _db.SaveChanges();
             }
         }
 
-        public IList<Person> GetAll()
+        public IList<TEntity> GetAll()
         {
-            return _db.People.ToList();
+            return _dbSet.ToList();
         }
 
-        public Person? GetByID(int? id)
+        public TEntity? GetByID(int? id)
         {
             if(id != null)
             {
-                return _db.People.Include(a => a.Cars).FirstOrDefault(a => a.Id == id);
+                return _dbSet.Find(id);
             }
             return null;
         }
 
-        public void Save(Person person)
+        public void Save(TEntity entity)
         {
-            if(person != null)
+            if(entity != null)
             {
-                _db.Add(person);
+                _dbSet.Add(entity);
                 _db.SaveChanges();
             }
         }

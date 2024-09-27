@@ -18,10 +18,13 @@ namespace Wizardry
                 });
 
             builder.Services.AddDbContext<ContextDb>();
+
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<NewPerson>();
+            builder.Services.AddSingleton<NewCar>();
 
-            builder.Services.AddScoped<IDataManager, DataManager>();
+            builder.Services.AddScoped<IPeopleManager, PeopleManager>();
+            builder.Services.AddScoped<ICarsManager, CarsManager>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

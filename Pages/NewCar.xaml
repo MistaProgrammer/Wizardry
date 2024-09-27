@@ -5,8 +5,44 @@
              Title="NewCar">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Brand"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Entry
+            x:Name="forBrand"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="200"/>
+
+        <Label 
+            Text="Model"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry
+            x:Name="forModel"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="200"/>
+
+        <Label
+            Text="Fuel:"
+            HorizontalOptions="Center"/>
+
+        <Picker
+            x:Name="forFuel"
+            WidthRequest="200"/>
+
+        <Label
+            Text="Owner:"
+            HorizontalOptions="Center"/>
+
+        <Picker
+            x:Name="forUser"
+            WidthRequest="200"/>
+
+        <Button
+            Text="Save"
+            HorizontalOptions="Center"
+            Clicked="SaveButton_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -6,26 +6,28 @@ namespace Wizardry
 {
     public partial class MainPage : ContentPage
     {
-        private readonly IDataManager _manager;
+        private readonly ICarsManager _carManager;
+        private readonly IPeopleManager _peopleManager;
 
-        public MainPage(IDataManager manager)
+        public MainPage(ICarsManager carsManager, IPeopleManager peopleManager)
         {
             InitializeComponent();
-            this._manager = manager;
-            Peoples.ItemsSource = manager.GetAll();
+            _carManager = carsManager;
+            _peopleManager = peopleManager;
+            Peoples.ItemsSource = peopleManager.GetAll();
             Shell.Current.Navigated += Current_Navigated;
         }
 
         private void Current_Navigated(object? sender, ShellNavigatedEventArgs e)
         {
             Peoples.ItemsSource = null;
-            Peoples.ItemsSource = _manager.GetAll();
+            Peoples.ItemsSource = _peopleManager.GetAll();
         }
 
         private async void Peoples_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             int lookedForPersonID = ((Person)e.Item).Id;
-            Person? lookedForPerson = _manager.GetByID(lookedForPersonID);
+            Person? lookedForPerson = _peopleManager.GetByID(lookedForPersonID);
 
             string cars = string.Empty;
 

@@ -16,5 +16,9 @@
         Title="Add New Person"
         ContentTemplate="{DataTemplate pages:NewPerson}"
         Route="NewPerson" />
+    <ShellContent
+        Title="Add New Car"
+        ContentTemplate="{DataTemplate pages:NewCar}"
+        Route="NewCar" />
 
 </Shell>
