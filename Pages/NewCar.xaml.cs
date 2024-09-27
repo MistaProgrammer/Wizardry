@@ -29,7 +29,8 @@ public partial class NewCar : ContentPage
 
     private void SaveButton_Clicked(object sender, EventArgs e)
     {
-        
+        _carManager.Save(new Car { Brand = forBrand.Text, Model = forModel.Text, Fuel = (Fuel)forFuel.SelectedItem, Driver = (Person)forUser.SelectedItem });
 
+        DisplayAlert($"{((Person)forUser.SelectedItem).Name}'s new car has been saved.", forBrand.Text + " " + forModel.Text, "OK");
     }
 }
